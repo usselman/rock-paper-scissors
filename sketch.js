@@ -16,7 +16,6 @@ function draw() {
     textAlign(LEFT);
     textFont('Arial');
     stroke(250);
-    //text('Rock - Paper - Scissors', 20, 80);
     for (let obj of objects) {
         obj.move();
         obj.display();
