@@ -3,7 +3,7 @@ const types = ['🪨', '📄', '✂️'];
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 33; i++) {
         objects.push(new GameObject('🪨'));
         objects.push(new GameObject('📄'));
         objects.push(new GameObject('✂️'));
@@ -21,6 +21,7 @@ function draw() {
         obj.display();
         obj.checkCollisions(objects);
     }
+    displayCounters();
 }
 
 class GameObject {
@@ -47,6 +48,8 @@ class GameObject {
         text(this.type, this.x, this.y);
     }
 
+
+
     checkCollisions(others) {
         for (let other of others) {
             if (other !== this && dist(this.x, this.y, other.x, other.y) < 20) {
@@ -67,5 +70,24 @@ class GameObject {
             }
         }
     }
-
 }
+
+function displayCounters() {
+    let rockCount = 0;
+    let paperCount = 0;
+    let scissorsCount = 0;
+
+    // Count each type
+    for (let obj of objects) {
+        if (obj.type === '🪨') rockCount++;
+        else if (obj.type === '📄') paperCount++;
+        else if (obj.type === '✂️') scissorsCount++;
+    }
+
+    textAlign(CENTER, BOTTOM);
+    textSize(24);
+    fill(0);
+    textFont('Arial');
+    text(`Rock: ${rockCount} | Paper: ${paperCount} | Scissors: ${scissorsCount}`, width / 2, height - 20);
+}
+
